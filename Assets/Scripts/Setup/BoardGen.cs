@@ -8,21 +8,15 @@ namespace Akangatu
 
     public class BoardGen : MonoBehaviour, ISetup
     {
+        const uint GRID_COUNT = 9;
+
         public float cellSize;
-        [Header("Must be an odd number")]
-        public uint gridCount;
         public GameObject cellGbj;
         public Transform gridGroup;
 
-#if UNITY_EDITOR
-        bool rodandoPeloEditor;
-#endif
-
         void Start()
         {
-#if UNITY_EDITOR
-            rodandoPeloEditor = true;
-#endif
+            CellGen.Reset();
             Setup();
             AfterSetup();
         }
@@ -34,18 +28,18 @@ namespace Akangatu
             float pos_x = 0;
             float pos_z = 0;
 
-            float gridSize = cellSize * gridCount;
+            float gridSize = cellSize * GRID_COUNT;
 
             float halfGridSize = gridSize / 2;
             float halfCellSize = cellSize / 2;
 
-            int meio_idx = Mathf.CeilToInt(gridCount/2);
+            int meio_idx = Mathf.CeilToInt(GRID_COUNT/2);
 
-            for (int i = 0; i < gridCount; i++)
+            for (int i = 0; i < GRID_COUNT; i++)
             {
                 pos_z = (cellSize * i) - halfGridSize + halfCellSize;
 
-                for (int j = 0; j < gridCount; j++)
+                for (int j = 0; j < GRID_COUNT; j++)
                 {
                     bool meio = (i==j) && i == meio_idx;
 
@@ -72,10 +66,17 @@ namespace Akangatu
 
         public void AfterSetup()
         {
-            Destroy(this);
+            //Destroy(this);
         }
 
 #if UNITY_EDITOR
+        bool rodandoPeloEditor;
+
+        void Awake ()
+        {
+            rodandoPeloEditor = true;
+        }
+
         void OnValidate()
         {
             if (!rodandoPeloEditor)
