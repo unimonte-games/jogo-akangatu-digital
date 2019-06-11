@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Akangatu
+namespace Akangatu.Setup
 {
     public interface ISetup
     {

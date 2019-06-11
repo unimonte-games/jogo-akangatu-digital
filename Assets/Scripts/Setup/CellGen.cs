@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Akangatu;
+using Akangatu.Setup;
 
-namespace Akangatu
+namespace Akangatu.Setup
 {
     public class CellGen : MonoBehaviour, ISetup
     {

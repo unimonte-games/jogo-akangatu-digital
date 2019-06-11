@@ -1,4 +1,4 @@
-namespace Akangatu
+namespace Akangatu.Types
 {
     public enum Rarity
     {
