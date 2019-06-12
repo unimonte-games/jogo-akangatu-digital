@@ -51,6 +51,7 @@ public class BoardPointer : MonoBehaviour
             {
                 pointerHits[cell_hit_idx]
                     .transform
+                    .Find("cedula")
                     .GetComponent<Animator>()
                     .SetTrigger("ClickCell");
             }
