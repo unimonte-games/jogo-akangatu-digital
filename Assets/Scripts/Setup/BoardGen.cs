@@ -8,7 +8,7 @@ namespace Akangatu.Setup
 {
     public class BoardGen : MonoBehaviour, ISetup
     {
-        const uint GRID_COUNT = 9;
+        const uint GRID_COUNT = 7;
 
         public float cellSize;
         public GameObject cellGbj;

@@ -1,0 +1,30 @@
+namespace Akangatu.Types
+{
+    public enum CellID
+    {
+        Anta,
+        AraraAzul,
+        AraraCanga,
+        Ararajuba,
+        Ariranha,
+        Capivara,
+        Carcara,
+        GarcaBrancaGrande,
+        GaviaoReal,
+        Guaxinim,
+        Jabuti,
+        LoboGuara,
+        MicoLeao,
+        OuricoCacheiro,
+        PicaPauDoCampo,
+        Preguica,
+        SabiaLaranjeira,
+        SaguiImperador,
+        Seriema,
+        TamanduaBandeira,
+        TatuBola,
+        Tucanucu,
+        UirapuruVermelho,
+        UrubuRei,
+    }
+}

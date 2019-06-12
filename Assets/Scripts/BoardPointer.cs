@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Akangatu;
 using Akangatu.Types;
+using Akangatu.CompoLibs;
 
 public class BoardPointer : MonoBehaviour
 {
@@ -49,11 +50,8 @@ public class BoardPointer : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                pointerHits[cell_hit_idx]
-                    .transform
-                    .Find("cedula")
-                    .GetComponent<Animator>()
-                    .SetTrigger("ClickCell");
+                Transform cell_tr = pointerHits[cell_hit_idx].transform;
+                GameMan.instance.PickCell(cell_tr);
             }
         }
 
