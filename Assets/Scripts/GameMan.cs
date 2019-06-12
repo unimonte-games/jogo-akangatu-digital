@@ -92,17 +92,7 @@ namespace Akangatu
 
         public void PickCell (Transform cell)
         {
-            if (cell1 && cell == cell1.transform)
-            {
-                cell1.Flip();
-                CancelCell(ref cell1);
-            }
-            else if (cell2 && cell == cell2.transform)
-            {
-                cell2.Flip();
-                CancelCell(ref cell2);
-            }
-            else
+            if (!(cell1 && cell == cell1.transform || cell2 && cell == cell2.transform))
             {
                 cell_counter = cell_counter + 1;
 
