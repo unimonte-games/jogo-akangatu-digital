@@ -17,12 +17,15 @@ public class BoardPointer : MonoBehaviour
         const int LAYER_CELL = (int)LayersAndTags.LayerCell;
         const int LAYER_CELL_MASK = 1 << (int)LayersAndTags.LayerCell;
 
+        const int LAYER_DECK_SLOT = (int)LayersAndTags.LayerDeckSlot;
+        const int LAYER_DECK_SLOT_MASK = 1 << (int)LayersAndTags.LayerDeckSlot;
+
         Ray pointerRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit[] pointerHits = Physics.RaycastAll(
             pointerRay,
             Mathf.Infinity,
-            LAYER_BOARD_MASK | LAYER_CELL_MASK
+            LAYER_BOARD_MASK | LAYER_CELL_MASK | LAYER_DECK_SLOT_MASK
         );
 
         if (pointerHits.Length == 0)
@@ -30,6 +33,7 @@ public class BoardPointer : MonoBehaviour
 
         int board_hit_idx = -1;
         int cell_hit_idx = -1;
+        int deck_slot_hit_idx = -1;
 
         for (int i = 0; i < pointerHits.Length; i++)
         {
@@ -41,18 +45,29 @@ public class BoardPointer : MonoBehaviour
                 case LAYER_CELL:
                     cell_hit_idx = i;
                     break;
+                case LAYER_DECK_SLOT:
+                    deck_slot_hit_idx = i;
+                    break;
             }
         }
 
         if (cell_hit_idx > -1)
         {
-            pointerGbj.position = pointerHits[cell_hit_idx].transform.position;
+            Transform cell_hit_tr = pointerHits[cell_hit_idx].transform;
+            pointerGbj.position = cell_hit_tr.position;
 
             if (Input.GetMouseButtonDown(0))
-            {
-                Transform cell_tr = pointerHits[cell_hit_idx].transform;
-                GameMan.instance.PickCell(cell_tr);
-            }
+                GameMan.instance.PickCell(cell_hit_tr);
+        }
+
+        if (deck_slot_hit_idx > -1)
+        {
+            Transform deck_slot_hit_tr = pointerHits[deck_slot_hit_idx].transform;
+            pointerGbj.position = deck_slot_hit_tr.position;
+
+            if (Input.GetMouseButtonDown(0))
+                GameMan.instance.UseCell(deck_slot_hit_tr);
+
         }
 
 

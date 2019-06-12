@@ -14,7 +14,12 @@ namespace Akangatu
         Cell cell1;
         Cell cell2;
         uint cell_counter = 0;
+
         public int playerNumber = 1;
+
+        int gameMode;
+        const int GAMEMODE_MEMORYGAME = 0;
+        const int GAMEMODE_MOVING = 1;
 
         public static GameMan instance;
 
@@ -22,6 +27,17 @@ namespace Akangatu
         {
             playerNumber = 1;
             instance = this;
+        }
+
+        public void UseCell(Transform deck_slot_tr)
+        {
+            Deck deck = deck_slot_tr.parent.GetComponent<Deck>();
+
+            if (deck.playerNumber != playerNumber)
+                return;
+
+
+            deck.DiscardDepositedCell(deck_slot_tr.name);
         }
 
         void CancelCell(ref Cell cellToCancel)
@@ -71,6 +87,11 @@ namespace Akangatu
             {
                 cell1.GoToDeck();
                 cell2.Discard();
+            }
+            else
+            {
+                cell1.Flip();
+                cell2.Flip();
             }
 
             cell_counter = 2;

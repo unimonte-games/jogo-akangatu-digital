@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Akangatu;
 using Akangatu.Types;
+using Akangatu.CompoLibs;
 
 namespace Akangatu.CompoLibs
 {
@@ -39,11 +40,10 @@ namespace Akangatu.CompoLibs
                 GameMan.instance.playerNumber
             );
 
-            tr.position =
-                GameObject
+            GameObject
                 .Find(DeckJX)
-                .transform
-                .position;
+                .GetComponent<Deck>()
+                .Deposit(tr);
 
             Destroy(GetComponent<BoxCollider>());
         }
@@ -53,14 +53,14 @@ namespace Akangatu.CompoLibs
             if (itsFlipped)
                 Flip();
 
-            Transform discard_tr = GameObject.Find("Discard").transform;
+            Transform discard_point_tr = GameObject.Find("DiscardPoint").transform;
+            tr.SetParent(GameObject.Find("Discard").transform);
+            tr.position = discard_point_tr.position;
 
-            tr.position = discard_tr.position;
-
-            discard_tr.position = new Vector3(
-                Mathf.Sin(discard_tr.position.z*2)/2f - 6.3f,
+            discard_point_tr.position = new Vector3(
+                Mathf.Sin(discard_point_tr.position.z*2)/2f - 6.3f,
                 0f,
-                discard_tr.position.z - 0.2f
+                discard_point_tr.position.z - 0.2f
             );
 
             Destroy(GetComponent<BoxCollider>());

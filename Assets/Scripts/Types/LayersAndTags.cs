@@ -2,7 +2,8 @@ namespace Akangatu.Types
 {
     public enum LayersAndTags
     {
-        LayerBoard = 8,
-        LayerCell  = 9,
+        LayerBoard    = 8,
+        LayerCell     = 9,
+        LayerDeckSlot = 10,
     }
 }
