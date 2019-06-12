@@ -8,6 +8,7 @@ using Akangatu.CompoLibs;
 public class BoardPointer : MonoBehaviour
 {
     public Transform pointerGbj;
+    public float offset;
 
     void Update()
     {
@@ -54,7 +55,7 @@ public class BoardPointer : MonoBehaviour
         if (cell_hit_idx > -1)
         {
             Transform cell_hit_tr = pointerHits[cell_hit_idx].transform;
-            pointerGbj.position = cell_hit_tr.position;
+            pointerGbj.position = new Vector3 (cell_hit_tr.position.x, cell_hit_tr.position.y + offset, cell_hit_tr.position.z);
 
             if (Input.GetMouseButtonDown(0))
                 GameMan.instance.PickCell(cell_hit_tr);
