@@ -16,10 +16,9 @@ namespace Akangatu
         uint cell_counter = 0;
 
         public int playerNumber = 1;
+        int[] energies = new int[2] {0, 0};
 
-        int gameMode;
-        const int GAMEMODE_MEMORYGAME = 0;
-        const int GAMEMODE_MOVING = 1;
+        public GameMode gameMode = GameMode.Memory;
 
         public static GameMan instance;
 
@@ -29,6 +28,46 @@ namespace Akangatu
             instance = this;
         }
 
+        void NextTurn()
+        {
+            playerNumber = playerNumber == 1 ? 2 : 1;
+        }
+
+        void Victory()
+        {
+            Debug.Log("VICTORY OF " + playerNumber.ToString() + "!!");
+        }
+
+        public void MovePiece(Transform free_cell_tr)
+        {
+            if (gameMode != GameMode.Moving)
+                return;
+
+            string player_gbj_name = string.Concat("Player#", playerNumber);
+            Transform player_tr = GameObject.Find(player_gbj_name).transform;
+            Player player = player_tr.GetComponent<Player>();
+
+            if (player.CanMove(free_cell_tr.position))
+            {
+                player.Move(free_cell_tr.position);
+
+                if (player.IsInCenter())
+                {
+                    Victory();
+                    Time.timeScale = 0f;
+                    return;
+                }
+
+                energies[playerNumber-1] = energies[playerNumber-1] - 1;
+
+                if (energies[playerNumber-1] == 0)
+                {
+                    gameMode = GameMode.Memory;
+                    NextTurn();
+                }
+            }
+        }
+
         public void UseCell(Transform deck_slot_tr)
         {
             Deck deck = deck_slot_tr.parent.GetComponent<Deck>();
@@ -36,8 +75,13 @@ namespace Akangatu
             if (deck.playerNumber != playerNumber)
                 return;
 
+            Cell cell = deck.GetCell(deck_slot_tr.name);
 
-            deck.DiscardDepositedCell(deck_slot_tr.name);
+            energies[playerNumber-1] =
+                energies[playerNumber-1] + ((int)cell.rarity) + 1;
+
+            cell.Discard();
+            gameMode = GameMode.Moving;
         }
 
         void CancelCell(ref Cell cellToCancel)
@@ -98,7 +142,7 @@ namespace Akangatu
             CancelCell(ref cell1);
             CancelCell(ref cell2);
 
-            playerNumber = playerNumber == 1 ? 2 : 1;
+            NextTurn();
         }
 
         IEnumerator WaitAndDo(float t, uint funcID)

@@ -12,6 +12,7 @@ namespace Akangatu.Setup
 
         public float cellSize;
         public GameObject cellGbj;
+        public GameObject freeCellGbj;
         public Transform gridGroup;
 
         void Start()
@@ -52,9 +53,6 @@ namespace Akangatu.Setup
                 {
                     bool meio = (i==j) && i == meio_idx;
 
-                    if (meio)
-                        continue;
-
                     pos_x = (cellSize * j) - halfGridSize + halfCellSize;
 
                     posInst.x = pos_x;
@@ -69,6 +67,22 @@ namespace Akangatu.Setup
 
                     Transform cellTrInst = cellGbjInst.GetComponent<Transform>();
                     cellTrInst.localPosition = posInst;
+
+                    GameObject freeCellGbjInst = Instantiate<GameObject>(
+                        freeCellGbj,
+                        cellTrInst.position,
+                        Quaternion.identity,
+                        gridGroup
+                    );
+
+                    freeCellGbjInst.transform.position = new Vector3(
+                        freeCellGbjInst.transform.position.x,
+                        0,
+                        freeCellGbjInst.transform.position.z
+                    );
+
+                    if (meio)
+                        Destroy(cellGbjInst);
                 }
             }
         }

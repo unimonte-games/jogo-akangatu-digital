@@ -5,5 +5,6 @@ namespace Akangatu.Types
         LayerBoard    = 8,
         LayerCell     = 9,
         LayerDeckSlot = 10,
+        LayerFreeCell = 11,
     }
 }

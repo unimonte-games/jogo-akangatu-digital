@@ -38,10 +38,10 @@ namespace Akangatu.CompoLibs
             cell_tr.localPosition = Vector3.zero;
         }
 
-        public void DiscardDepositedCell(string slotName)
+        public Cell GetCell(string slotName)
         {
             int slotIdx = slotName == "0" ? 0 : 1;
-            slots[slotIdx].GetChild(0).GetComponent<Cell>().Discard();
+            return slots[slotIdx].GetChild(0).GetComponent<Cell>();
         }
     }
 }

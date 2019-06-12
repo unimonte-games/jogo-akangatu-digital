@@ -59,7 +59,7 @@ namespace Akangatu.CompoLibs
 
             discard_point_tr.position = new Vector3(
                 Mathf.Sin(discard_point_tr.position.z*2)/2f - 6.3f,
-                0f,
+                discard_point_tr.position.y + 0.05f,
                 discard_point_tr.position.z - 0.2f
             );
 
