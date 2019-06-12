@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 8331785245894743290, guid: badfbe5fdd371fa4499a2ef12388a3e5,
         type: 3}
       propertyPath: m_Name
-      value: Cedula_base
+      value: Cedula Urubu Rei
       objectReference: {fileID: 0}
     - target: {fileID: 8331785245894743286, guid: badfbe5fdd371fa4499a2ef12388a3e5,
         type: 3}
@@ -66,6 +66,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 590953113878901951, guid: badfbe5fdd371fa4499a2ef12388a3e5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c6ca00193bdbeb2458b02b2d4c96cf0f, type: 2}
+    - target: {fileID: 1835980981835685838, guid: badfbe5fdd371fa4499a2ef12388a3e5,
+        type: 3}
+      propertyPath: cellId
+      value: 23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: badfbe5fdd371fa4499a2ef12388a3e5, type: 3}
