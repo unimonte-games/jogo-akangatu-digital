@@ -55,7 +55,8 @@ namespace Akangatu.CompoLibs
 
             Transform discard_point_tr = GameObject.Find("DiscardPoint").transform;
             tr.SetParent(GameObject.Find("Discard").transform);
-            tr.position = discard_point_tr.position;
+            tr.GetComponent<SmoothMove>().targetPosition =
+                discard_point_tr.localPosition;
 
             discard_point_tr.position = new Vector3(
                 Mathf.Sin(discard_point_tr.position.z*2)/2f - 6.3f,

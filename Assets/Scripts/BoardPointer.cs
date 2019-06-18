@@ -22,6 +22,14 @@ public class BoardPointer : MonoBehaviour
     const int LAYER_FREE_CELL = (int)LayersAndTags.LayerFreeCell;
     const int LAYER_FREE_CELL_MASK = 1 << (int)LayersAndTags.LayerFreeCell;
 
+    SmoothMove pointerSMove;
+
+    void Start()
+    {
+        pointerSMove = pointerGbj.GetComponent<SmoothMove>();
+        pointerSMove.targetPosition = pointerGbj.transform.localPosition;
+    }
+
     void Update()
     {
         Ray pointerRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -65,7 +73,7 @@ public class BoardPointer : MonoBehaviour
             if (cell_hit_idx > -1)
             {
                 Transform cell_hit_tr = pointerHits[cell_hit_idx].transform;
-                pointerGbj.position = new Vector3 (cell_hit_tr.position.x, cell_hit_tr.position.y + offset, cell_hit_tr.position.z);
+                pointerSMove.targetPosition = new Vector3 (cell_hit_tr.position.x, cell_hit_tr.position.y + offset, cell_hit_tr.position.z);
 
                 if (Input.GetMouseButtonDown(0))
                     GameMan.instance.PickCell(cell_hit_tr);
@@ -74,7 +82,7 @@ public class BoardPointer : MonoBehaviour
             if (deck_slot_hit_idx > -1)
             {
                 Transform deck_slot_hit_tr = pointerHits[deck_slot_hit_idx].transform;
-                pointerGbj.position = deck_slot_hit_tr.position;
+                pointerSMove.targetPosition = deck_slot_hit_tr.position + (Vector3.up * offset);
 
                 if (Input.GetMouseButtonDown(0))
                     GameMan.instance.UseCell(deck_slot_hit_tr);
@@ -87,17 +95,13 @@ public class BoardPointer : MonoBehaviour
             if (free_cell_hit_idx > -1 && cell_hit_idx == -1)
             {
                 Transform free_cell_hit_tr = pointerHits[free_cell_hit_idx].transform;
-                pointerGbj.position = free_cell_hit_tr.position;
+                pointerSMove.targetPosition = free_cell_hit_tr.position + (Vector3.up * offset);
 
                 if (Input.GetMouseButtonDown(0))
                     GameMan.instance.MovePiece(free_cell_hit_tr);
             }
 
         }
-
-
-
-
 
 #if UNITY_EDITOR
         if (board_hit_idx > -1)

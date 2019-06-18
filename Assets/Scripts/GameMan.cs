@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Akangatu;
 using Akangatu.CompoLibs;
 using Akangatu.Types;
@@ -9,6 +10,9 @@ namespace Akangatu
 {
     public class GameMan : MonoBehaviour
     {
+        public GameObject ganhouPn;
+        public Text turnText;
+
         const uint FUNC_ID_CompareCellsAndProceed = 0;
 
         Cell cell1;
@@ -26,16 +30,37 @@ namespace Akangatu
         {
             playerNumber = 1;
             instance = this;
+            Time.timeScale = 1f;
         }
 
         void NextTurn()
         {
             playerNumber = playerNumber == 1 ? 2 : 1;
+            turnText.text =
+                string.Concat("Turn: Player ", playerNumber.ToString());
         }
 
         void Victory()
         {
             Debug.Log("VICTORY OF " + playerNumber.ToString() + "!!");
+            ganhouPn.SetActive(true);
+
+            string msg = string.Concat(
+                "Victory of Player ",
+                playerNumber.ToString(),
+                "!"
+            );
+
+            ganhouPn
+                .transform
+                .Find("Text")
+                .GetComponent<Text>()
+                .text = msg;
+        }
+
+        public void Reset ()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
 
         public void MovePiece(Transform free_cell_tr)

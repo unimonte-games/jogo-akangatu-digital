@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2747524899720497634}
   - component: {fileID: 1552100512583564521}
+  - component: {fileID: -3033727452576131362}
   m_Layer: 8
   m_Name: player
   m_TagString: Untagged
@@ -45,6 +46,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4f53b0a50613a438052f5853e30f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3033727452576131362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281964978728776946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ae723813fd51641a2aa45f5488675e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
+  velocity: 5
 --- !u!1001 &3670541759205934920
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52,11 +67,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2747524899720497634}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 4afc79208d795d24a836355286bfd791,
-        type: 3}
-      propertyPath: m_Name
-      value: player_2
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4afc79208d795d24a836355286bfd791,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -111,6 +121,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 4afc79208d795d24a836355286bfd791,
+        type: 3}
+      propertyPath: m_Name
+      value: player_2
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 4afc79208d795d24a836355286bfd791,
         type: 3}
@@ -137,11 +152,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2747524899720497634}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 11782e81c5c4e10488ddf6494371069c,
-        type: 3}
-      propertyPath: m_Name
-      value: player_1
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 11782e81c5c4e10488ddf6494371069c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -196,6 +206,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 11782e81c5c4e10488ddf6494371069c,
+        type: 3}
+      propertyPath: m_Name
+      value: player_1
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 11782e81c5c4e10488ddf6494371069c,
         type: 3}

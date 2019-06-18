@@ -35,7 +35,7 @@ namespace Akangatu.CompoLibs
         void DepositCell(Transform cell_tr, int idx)
         {
             cell_tr.SetParent(slots[idx]);
-            cell_tr.localPosition = Vector3.zero;
+            cell_tr.GetComponent<SmoothMove>().targetPosition = Vector3.zero;
         }
 
         public Cell GetCell(string slotName)
